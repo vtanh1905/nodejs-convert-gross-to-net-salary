@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - nodejs-mvc-oop:/var/lib/mysql
+    networks:
+      - backend
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+  # mongodb:
+  #   image: mongo
+  #   container_name: mongodb
+  #   restart: always
+  #   ports: 
+  #     - 3001:27017
+  #   volumes:
+  #     - nodejs-mvc-oop:/data/db
+  #   networks:
+  #     - backend
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=${DB_USERNAME}
+  #     - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+  #     - MONGO_INITDB_DATABASE=${DB_NAME}
+  web:
+    depends_on:
+      - mysql
+      - mongodb
+    build:
+      context: ./
+      target: dev
+    restart: always
+    container_name: web
+    volumes:
+      - .:/src 
+    command: npm run start:dev
+    ports:
+      - "${WEB_PORT}:${WEB_PORT}"
+    networks:
+      - backend
+    environment:
+      NODE_ENV: development
+      DEBUG: nodejs-mvc-oop:*
+networks:
+  backend:
+    name: nodejs-mvc-oop
+volumes:
+  nodejs-mvc-oop: 

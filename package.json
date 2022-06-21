@@ -1,0 +1,37 @@
+{
+  "name": "nodejs-mvc-oop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/app.ts",
+    "start:dev": "nodemon ./src/app.ts --legacy-watch",
+    "seed": "ts-node ./src/tools/seed/index.ts",
+    "test": "jest",
+    "test:html": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.0.0",
+    "changjs": "^1.0.2",
+    "dotenv": "^16.0.1",
+    "mongodb": "^4.7.0",
+    "mysql2": "^2.3.3",
+    "ts-node": "^10.8.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^28.1.2",
+    "jest": "^28.1.1",
+    "nodemon": "^2.0.16",
+    "ts-jest": "^28.0.5"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": ["ts", "tsx", "js"]
+  }
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gross To Net</title>
+</head>
+<body>
+  <h1>Công cụ tính lương Gross sang Net</h1>
+  <form id="salaryForm">
+    <label for="country_code">Lương Gross :</label>
+    <input type="text" id="inputSalary" pattern="[0-9]{6,}" title="Tối thiệu 6 số" > VND<br><br>
+    <label for="country_code">Lương Net : <span id="outputSalary"></span></label><br><br>
+    <input type="submit">
+  </form>
+  <script>
+    const salaryForm = document.getElementById("salaryForm");
+    salaryForm.onsubmit = function(e) {
+      e.preventDefault();
+      const inputSalary = document.getElementById("inputSalary").value;
+      document.getElementById("outputSalary").innerText = (inputSalary * 89.5) / 100 + " VND"
+    }
+  </script>
+</body>
+</html>
